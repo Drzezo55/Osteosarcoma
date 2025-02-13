@@ -114,4 +114,4 @@ if st.button("Make Prediction"):
         st.write("The predicted survival years for this patient is negative. Unable to provide accurate prediction.")
     else:
         st.write("The predicted survival years ths for this patient is")
-        st.write(prediction*12)
+        st.write(prediction)
