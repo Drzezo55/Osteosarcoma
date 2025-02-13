@@ -4,7 +4,7 @@ import streamlit as st
 from sklearn.preprocessing import StandardScaler
 
 # Load the model and mappings
-model = joblib.load('C:/Users/ascom/Desktop/new paid/lin.pkl')
+model = joblib.load('lin.pkl')
 # Mapping dictionaries
 Sex_mapping = {'Male': 1, 'Female': 0}
 race_mapping = {
