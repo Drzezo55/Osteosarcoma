@@ -4,7 +4,7 @@ import streamlit as st
 from sklearn.preprocessing import StandardScaler
 
 # Load the model and mappings
-model = joblib.load('lin.pkl')
+model = joblib.load('C:/Users/ascom/Desktop/new paid/xg_reg.pkl')
 # Mapping dictionaries
 Sex_mapping = {'Male': 1, 'Female': 0}
 race_mapping = {
@@ -35,8 +35,7 @@ Chemotherapy_mapping= {'No': 0, 'Yes': 1}
 
 
 # Streamlit App
-st.image('download.jfif', use_container_width =True)
-st.title("Survival prediction of Osteosarcoma")
+
 Age = st.slider("Age (years)", min_value=0, max_value=100, value=50, step=1)
 Sex = st.radio("Sex", ['Male', 'Female'])
 Race = st.selectbox("Race", ['White', 'Asian or Pacific Islander', 'Black', 'American Indian/Alaska Native'])
