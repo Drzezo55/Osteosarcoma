@@ -111,7 +111,7 @@ if st.button("Make Prediction"):
     prediction = model.predict(user_df)  # Make predictions using the model
 
     if prediction < 0:
-        st.write("The predicted survival years for this patient is negative. Unable to provide accurate prediction.")
+        st.write("The predicted survival months for this patient is negative. Unable to provide accurate prediction.")
     else:
-        st.write("The predicted survival years ths for this patient is")
+        st.write("The predicted survival months ths for this patient is")
         st.write(prediction*12)
