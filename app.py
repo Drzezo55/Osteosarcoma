@@ -115,9 +115,9 @@ if st.button("Make Prediction"):
 
         # Decision rule: If survival probability is greater than 50%, patient is alive; otherwise dead
         if survival_probability > 0.5:
-            st.write(f"The patient is predicted to be alive with a survival probability of {survival_probability * 100:.2f}%")
+            st.write(f"The patient is predicted to be alive at five years with a survival probability of {survival_probability * 100:.2f}%")
         else:
-            st.write(f"The patient is predicted to be dead with a survival probability of {survival_probability * 100:.2f}%")
+            st.write(f"The patient is predicted to be dead at five years with a survival probability of {survival_probability * 100:.2f}%")
     else:
         # If the model doesn't support probabilities, you can just print the prediction result
         if prediction < 0:
