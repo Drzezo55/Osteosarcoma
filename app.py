@@ -4,7 +4,7 @@ import streamlit as st
 from sklearn.preprocessing import StandardScaler
 
 # Load the model and mappings
-model = joblib.load('xg_reg.pkl')
+model = joblib.load('log.pkl')
 # Mapping dictionaries
 Sex_mapping = {'Male': 1, 'Female': 0}
 race_mapping = {
@@ -105,13 +105,23 @@ user_df['Age'] = user_df['Age'].astype(float)  # Convert 'Age' to float (you may
 user_df['tumor size '] = user_df['tumor size '].astype(float) 
 
 
-
 if st.button("Make Prediction"):
     # Assuming 'model' is your pre-trained model
     prediction = model.predict(user_df)  # Make predictions using the model
+    
+    # Assuming the model is a classification model, predicting the survival status (alive or dead)
+    if model.predict_proba:
+        survival_probability = model.predict_proba(user_df)[0][1]  # Get the probability of being alive (1)
 
-    if prediction < 0:
-        st.write("The predicted survival months for this patient is negative. Unable to provide accurate prediction.")
+        # Decision rule: If survival probability is greater than 50%, patient is alive; otherwise dead
+        if survival_probability > 0.5:
+            st.write(f"The patient is predicted to be alive with a survival probability of {survival_probability * 100:.2f}%")
+        else:
+            st.write(f"The patient is predicted to be dead with a survival probability of {survival_probability * 100:.2f}%")
     else:
-        st.write("The predicted survival months ths for this patient is")
-        st.write(prediction*12)
+        # If the model doesn't support probabilities, you can just print the prediction result
+        if prediction < 0:
+            st.write("The predicted survival years for this patient is negative. Unable to provide accurate prediction.")
+        else:
+            st.write(f"The predicted survival years for this patient is: {prediction[0] * 12} months")
+
